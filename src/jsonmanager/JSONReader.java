@@ -57,8 +57,7 @@ public class JSONReader {
         }
         
         for (index=0; index<libri.length; index++)
-            System.out.println(libri[index]);
-       
+            System.out.println(libri[index]);   
     }
     
 }

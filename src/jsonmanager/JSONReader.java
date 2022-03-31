@@ -5,9 +5,11 @@
  */
 package jsonmanager;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -26,8 +28,9 @@ public class JSONReader {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException {
-
-        Libro libri[];
+        ArrayList<Libro> libri =new ArrayList<Libro>();
+        //Libro libri[];
+        StringBuilder sb;
         
         InputStream input = new FileInputStream(JSON_FILE);
         
@@ -41,7 +44,7 @@ public class JSONReader {
         
         JsonArray jsonArray = innerJsonObject.getJsonArray("libri");
         
-        libri = new Libro[jsonArray.size()];
+        //libri = new Libro[jsonArray.size()];
         
         int index = 0;
         
@@ -53,11 +56,11 @@ public class JSONReader {
             libro.setAutore(element.asJsonObject().getString("autore"));
             libro.setPrezzo((float) element.asJsonObject().getJsonNumber("prezzo").doubleValue());
             
-            libri[index++] = libro;        
+            libri.add(libro);        
         }
         
-        for (index=0; index<libri.length; index++)
-            System.out.println(libri[index]);   
+        for (index=0; index<libri.size(); index++)
+            System.out.println(libri.get(index).toString());   
     }
     
 }
